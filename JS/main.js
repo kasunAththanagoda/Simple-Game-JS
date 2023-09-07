@@ -126,8 +126,18 @@ const verifyAnswer=(state)=>{
     
     if(qNumber==5 ){
         //end game
+        $('#start-btn').prop("disabled",false);
+        $('#txt-time').val('00: 00');
+        qNumber=1;
+        showAnswers();
+        $('#txt-q-number').val("1/5");
+        return;
     }
     qNumber++;
     $('#txt-q-number').val(qNumber+"/5");
     displayQuiz();
+}
+
+const showAnswers=()=>{
+    console.log("answers :",submitDataArray)
 }
