@@ -1,3 +1,11 @@
+let min=0;
+let sec=0;
+let qNumber=1;
+let interval;
+
+$('#txt-time').val('00: 00');
+$('#txt-q-number').val('1/5');
+
 class Question{
     constructor(id,question,answers){
         this.id=id;
@@ -53,4 +61,42 @@ const q5 = new Question(5, "Which sport is known as the 'king of sports'?", [
 ]);
 
 
-dataArray.push(q1,q2,q3,q4,q5);
+// dataArray.push(q1,q2,q3,q4,q5);
+
+
+const start=()=>{
+    $('#start-btn').prop("disabled",true);
+    displayQuiz();
+}
+
+const displayQuiz=()=>{
+    sec=0;
+    interval=setInterval(()=>{
+        if(sec<9){
+            $('#txt-time').val('0'+sec); 
+        }
+        else{
+        $('#txt-time').val(sec);   
+        }
+        sec++;
+        if(sec==30){
+           verifyAnswer("skipped")
+        }
+    },1000);
+}
+
+const verifyAnswer=(state)=>{
+    clearInterval(interval);
+    if(state==="skipped"){
+        //null answer
+    }
+    else{
+        //set answer
+    }
+    
+    if(qNumber==5 ){
+        //end game
+    }
+    qNumber++;
+    $('#txt-q-number').val(qNumber+"/5");
+}
