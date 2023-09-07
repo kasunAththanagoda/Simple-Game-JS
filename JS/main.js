@@ -22,7 +22,7 @@ class Answer{
     }
 }
 
-let dataArray;
+let dataArray=[];
 
 let q1=new Question(1,"Which river is the longest in the world?",[
     new Answer(1,"Nile",true),
@@ -61,7 +61,7 @@ const q5 = new Question(5, "Which sport is known as the 'king of sports'?", [
 ]);
 
 
-// dataArray.push(q1,q2,q3,q4,q5);
+ dataArray.push(q1,q2,q3,q4,q5);
 
 
 const start=()=>{
@@ -71,6 +71,24 @@ const start=()=>{
 
 const displayQuiz=()=>{
     sec=0;
+
+    console.log("array",dataArray)
+    let selectedQuestion=dataArray[qNumber-1];
+    $('#question').val(selectedQuestion.question);
+    $.each(selectedQuestion.answers,function(index,record){
+        let li=$('<li>');
+        let rbtn=$('<input>').attr({
+            name: 'answer',
+            type: 'radio',
+            value: record.id
+        })
+        let lbl=$('<label>').text(record.answer);
+
+        li.append(rbtn);
+        li.append(lbl);
+        $('#answer-list').append(li);
+    } )
+
     interval=setInterval(()=>{
         if(sec<9){
             $('#txt-time').val('0'+sec); 
@@ -80,7 +98,7 @@ const displayQuiz=()=>{
         }
         sec++;
         if(sec==30){
-           verifyAnswer("skipped")
+           verifyAnswer("skipped");
         }
     },1000);
 }
