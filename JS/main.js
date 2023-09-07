@@ -2,6 +2,7 @@ let min=0;
 let sec=0;
 let qNumber=1;
 let interval;
+let submitDataArray=[];
 
 $('#txt-time').val('00: 00');
 $('#txt-q-number').val('1/5');
@@ -66,6 +67,7 @@ const q5 = new Question(5, "Which sport is known as the 'king of sports'?", [
 
 const start=()=>{
     $('#start-btn').prop("disabled",true);
+    submitDataArray=[];
     displayQuiz();
 }
 
@@ -75,6 +77,7 @@ const displayQuiz=()=>{
     console.log("array",dataArray)
     let selectedQuestion=dataArray[qNumber-1];
     $('#question').val(selectedQuestion.question);
+    $("#answer-list").empty();
     $.each(selectedQuestion.answers,function(index,record){
         let li=$('<li>');
         let rbtn=$('<input>').attr({
@@ -107,9 +110,18 @@ const verifyAnswer=(state)=>{
     clearInterval(interval);
     if(state==="skipped"){
         //null answer
+        submitDataArray.push(null);
+
     }
     else{
         //set answer
+        let answer=$('input[name=answer]:checked').val();
+        console.log(answer)
+        submitDataArray.push({
+            qNumber: qNumber,
+            answer: answer
+        });
+
     }
     
     if(qNumber==5 ){
@@ -117,4 +129,5 @@ const verifyAnswer=(state)=>{
     }
     qNumber++;
     $('#txt-q-number').val(qNumber+"/5");
+    displayQuiz();
 }
