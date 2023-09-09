@@ -12,8 +12,11 @@
     />
   </head>
   <body>
-    <div class="container" style="padding: 20px 0; background-color: aliceblue">
-      <div class="inner" style="height: 100vh">
+    <div
+      class="container"
+      style="padding: 20px 0; background-color: aliceblue; height: 100vh"
+    >
+      <div class="inner" style="height: 50%">
         <div
           class="top"
           style="
@@ -24,12 +27,26 @@
           "
         >
           <div class="top-left" style="display: flex; flex: 1">
-            <input type="text" id="txt-time" style="font-weight: bold; text-align: center;" class="form-control" disabled />
+            <input
+              type="text"
+              id="txt-time"
+              style="font-weight: bold; text-align: center"
+              class="form-control"
+              disabled
+            />
             &nbsp;
             <input
               type="text"
               id="txt-q-number"
-              style="font-weight: bold; text-align: center;"
+              style="font-weight: bold; text-align: center"
+              class="form-control"
+              disabled
+            />
+            &nbsp;
+            <input
+              type="text"
+              id="txt-answer"
+              style="font-weight: bold; text-align: center"
               class="form-control"
               disabled
             />
@@ -37,7 +54,12 @@
           </div>
 
           <div class="top-right" style="width: 200px">
-            <button id="start-btn" onclick="start()" class="btn btn-primary" style="width: 100%; height: 100%">
+            <button
+              id="start-btn"
+              onclick="start()"
+              class="btn btn-primary"
+              style="width: 100%; height: 100%"
+            >
               START
             </button>
           </div>
@@ -50,22 +72,22 @@
 
       <div class="answer-wrapper">
         <form action="">
-          <ul style="margin: 0; padding: 0; list-style: none;" id="answer-list">
-      
-          </ul>
+          <ul
+            style="margin: 0; padding: 0; list-style: none"
+            id="answer-list"
+          ></ul>
         </form>
       </div>
 
-      <div class="bottom" style="display: flex; justify-content: flex-end;">
-        <button class="btn btn-outline-dark" onclick="verifyAnswer('skipped')">Skip</button> &nbsp;
-        <button class="btn btn-success" onclick="verifyAnswer('Submit')">Submit</button>
-
+      <div class="bottom" style="display: flex; justify-content: flex-end">
+        <button class="btn btn-outline-dark" onclick="verifyAnswer('skipped')">
+          Skip
+        </button>
+        &nbsp;
+        <button class="btn btn-success" onclick="verifyAnswer('Submit')">
+          Submit
+        </button>
       </div>
-
-
-
-
-
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>

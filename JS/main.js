@@ -119,18 +119,21 @@ const verifyAnswer=(state)=>{
         console.log(answer)
         submitDataArray.push({
             qNumber: qNumber,
-            answer: answer
+            answer: answer,
+            time: $('#txt-time').val()
         });
 
     }
     
     if(qNumber==5 ){
         //end game
+        qNumber=1;
         $('#start-btn').prop("disabled",false);
         $('#txt-time').val('00: 00');
-        qNumber=1;
-        showAnswers();
         $('#txt-q-number').val("1/5");
+        $("#answer-list").empty();
+        $('#question').val('');
+        showAnswers();
         return;
     }
     qNumber++;
@@ -140,4 +143,15 @@ const verifyAnswer=(state)=>{
 
 const showAnswers=()=>{
     console.log("answers :",submitDataArray)
+    let marks=0;
+    for(let x=0; x<submitDataArray.length;x++){
+        let selectedQuestion=dataArray[x];
+        let selectedAnswer=submitDataArray[x];
+        let da=selectedQuestion.answers.find(d=>d.id==selectedAnswer.answer);
+        if(da.correctState){
+            marks++;
+        }
+    }
+    console.log("marks :",marks)
+    $('#txt-answer').val('Result : '+marks +'/5');
 }
